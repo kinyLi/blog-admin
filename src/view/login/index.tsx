@@ -1,13 +1,17 @@
 import React from 'react';
-import { Row, Col } from 'antd';
+import { Layout } from 'antd';
+import './index.scss';
+
+const { Header, Footer, Content } = Layout;
 
 function Login() {
   return (
-    <div>
-      <Row>
-        <Col span={24}>
-        </Col>
-      </Row>
+    <div className="login-view">
+    <Layout>
+      <Header>Header</Header>
+      <Content>Content</Content>
+      <Footer>Footer</Footer>
+    </Layout>
     </div>
   )
 }
