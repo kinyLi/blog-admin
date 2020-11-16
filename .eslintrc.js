@@ -4,34 +4,37 @@ module.exports = {
         es2021: true,
     },
     settings: {
-        "import/resolver": {
+        'import/resolver': {
             node: {
-                extensions: [".js", ".jsx", ".ts", ".tsx"],
-                paths: ["./src"],
+                extensions: ['.js', '.jsx', '.ts', '.tsx'],
+                paths: ['./src'],
             },
         },
     },
     extends: [
-        "airbnb",
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:prettier/recommended",
-        "prettier/flowtype",
-        "prettier/react",
-        "prettier/standard",
+        'airbnb',
+        'eslint:recommended',
+        'plugin:react/recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:prettier/recommended',
+        'prettier/flowtype',
+        'prettier/react',
+        'prettier/standard',
     ],
-    parser: "@typescript-eslint/parser",
+    parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaFeatures: {
             jsx: true,
         },
         ecmaVersion: 12,
-        sourceType: "module",
+        sourceType: 'module',
     },
-    plugins: ["react", "@typescript-eslint"],
+    plugins: ['react', '@typescript-eslint', 'prettier'],
     rules: {
-        "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx", ".ts", ".tsx"] }],
-        "import/extensions": ["never"],
+        'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+        'import/extensions': [2, 'never'],
+        'no-use-before-define': 'off',
+        '@typescript-eslint/no-use-before-define': ['error'],
+        'prettier/prettier': 'error',
     },
 };

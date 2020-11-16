@@ -2,7 +2,7 @@ interface IState {
     name?: string;
 }
 
-const auth = (state: IState = { name: "lijinyi" }, action = {}) => {
+const auth = (state: IState = { name: 'lijinyi' }, action = {}): IState => {
     switch (action) {
         default:
             return state;

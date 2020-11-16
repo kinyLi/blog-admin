@@ -1,6 +1,6 @@
-import React from "react";
-import { Layout } from "antd";
-import "./index.scss";
+import React from 'react';
+import { Layout } from 'antd';
+import './index.scss';
 
 const { Header, Footer, Content } = Layout;
 
