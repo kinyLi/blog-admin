@@ -44,3 +44,11 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+## 文件结构描叙
+
+保持项目整洁性定义规范
+1. 工具类引入在顶部
+2. 组件类引入在中部
+3. css类引入在底部

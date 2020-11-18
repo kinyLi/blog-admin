@@ -1,22 +1,16 @@
 import React from 'react';
+
 import { Form, Input, Button, Checkbox } from 'antd';
+import { AntdLayoutInterface } from 'utils/interface/antd';
+
 import './index.scss';
 
-interface SpanNumber {
-    span?: number;
-    offset?: number;
-}
-interface ILayout {
-    labelCol?: SpanNumber;
-    wrapperCol?: SpanNumber;
-}
-
-const inputLayout: ILayout = {
+const inputLayout: AntdLayoutInterface = {
     labelCol: { span: 24 },
     wrapperCol: { span: 24 },
 };
 
-const tailLayout: ILayout = {
+const tailLayout: AntdLayoutInterface = {
     wrapperCol: { offset: 8, span: 24 },
 };
 

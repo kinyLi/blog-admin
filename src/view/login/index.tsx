@@ -1,6 +1,8 @@
 import React from 'react';
-import { Layout, Form, Input, Button, Checkbox } from 'antd';
+
+import { Layout } from 'antd';
 import FromWrapper from './components/from-wrapper';
+
 import './index.scss';
 
 const { Header, Footer, Content } = Layout;

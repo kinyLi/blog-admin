@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'antd/dist/antd.min.css';
-
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
-import App from './App';
 import rootReducer from './reducers/index';
+
+import App from './App';
+
+import 'antd/dist/antd.min.css';
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(logger, thunk)));
 
