@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Form, Input, Button, Checkbox } from 'antd';
 import { AntdLayoutInterface } from 'utils/interface/antd';
+import RegisterModal from '../register-modal';
 
 import './index.scss';
 
@@ -11,16 +12,26 @@ const inputLayout: AntdLayoutInterface = {
 };
 
 const tailLayout: AntdLayoutInterface = {
+    wrapperCol: { offset: 0, span: 24 },
+};
+
+const buttonLayout: AntdLayoutInterface = {
     wrapperCol: { offset: 8, span: 24 },
 };
 
 function FromWrapper(): JSX.Element {
+    const [isShowRegister, setIsShowRegister] = useState(false);
+
     const onFinish = (values: any) => {
         console.log('Success:', values);
     };
 
     const onFinishFailed = (errorInfo: any) => {
         console.log('Failed:', errorInfo);
+    };
+
+    const changeIsShowRegister = (): void => {
+        setIsShowRegister(!isShowRegister);
     };
     return (
         <div className="login-view-from-wrapper">
@@ -51,12 +62,16 @@ function FromWrapper(): JSX.Element {
                     <Checkbox>Remember me</Checkbox>
                 </Form.Item>
 
-                <Form.Item {...tailLayout}>
+                <Form.Item {...buttonLayout}>
                     <Button type="primary" htmlType="submit">
                         Submit
                     </Button>
                 </Form.Item>
             </Form>
+            <button type="button" onClick={changeIsShowRegister} className="register-modal-open">
+                还没有账号?快速注册
+            </button>
+            <RegisterModal changeIsShowRegister={changeIsShowRegister} visible={isShowRegister} />
         </div>
     );
 }

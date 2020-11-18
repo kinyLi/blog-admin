@@ -4,4 +4,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+
+    .register-modal-open {
+        color: dodgerblue;
+        font-size: 12px;
+        text-decoration: underline;
+        border: none;
+        background: transparent;
+
+        &:focus {
+            outline: 0;
+        }
+
+        &:hover {
+            color: crimson;
+            cursor: pointer;
+        }
+    }
 }
