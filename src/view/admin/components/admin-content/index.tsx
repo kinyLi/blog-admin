@@ -5,7 +5,7 @@ import { UploadOutlined } from '@ant-design/icons';
 
 const props = {
     name: 'file',
-    action: 'http://localhost:5000/Setting/setting',
+    action: 'http://207.148.115.114:5000/Setting/setting',
     headers: {
         authorization: 'authorization-text',
     },

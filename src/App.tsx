@@ -9,7 +9,8 @@ import './App.scss';
 
 function App(): JSX.Element {
     return (
-        <div className="App" style={{ backgroundImage: `url(${background1})` }}>
+        // style={{ backgroundImage: `url(${background1})` }}
+        <div className="App">
             <Router>
                 <Route path="/" component={Admin} exact />
                 <Route path="/login" component={Login} />
