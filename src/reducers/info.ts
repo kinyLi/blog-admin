@@ -4,9 +4,13 @@ interface IState {
     url: string;
 }
 
+interface IPayload {
+    data: string;
+}
+
 interface IAction {
     type: string;
-    data: string;
+    payload?: IPayload;
 }
 
 const initState: IState = {
@@ -14,11 +18,11 @@ const initState: IState = {
 };
 
 const getInfo = (state: IState = initState, action: IAction): IState => {
-    const { type, data } = action;
+    const { type, payload = { data: '' } } = action;
+    const { data } = payload;
     let update = {};
     switch (type) {
         case GET_INFO_SUCCESS:
-            console.log('success');
             update = {
                 url: data,
             };
