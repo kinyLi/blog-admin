@@ -3,16 +3,18 @@ import $axios from '../axios';
 import CallApi from './index.interface';
 
 /**
- * 二次封装action,使用更为合理
+ * @types 传输action行为, 顺序为0 = 发起, 1 = 响应成功, 2 = 响应失败
+ * @options axios官方参数
  */
-function CALL_API({ types, path, method }: CallApi) {
-    return (dispatch: Dispatch) => {
+function CALL_API({ types, options }: CallApi) {
+    return (dispatch: Dispatch): Promise<void> => {
         dispatch({ type: types[0] });
-        return $axios(path)
+        return $axios(options)
             .then((res) => {
                 dispatch({ type: types[1], payload: res });
             })
             .catch((err) => {
+                console.log(err);
                 dispatch({ type: types[2] });
             });
     };

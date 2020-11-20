@@ -1,18 +1,49 @@
-import axios, { AxiosStatic } from 'axios';
-import { baseURL } from '../../config';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { baseURL, accessToken } from '../../config';
 
-export default function $axios(url: string) {
+export default function $axios(options: AxiosRequestConfig) {
     return new Promise((resolve, reject) => {
         const instance = axios.create({
+            ...options,
             baseURL,
         });
+
+        // 发送前拦截
         instance.interceptors.request.use((config) => {
-            return config;
+            const newConfig = config;
+            // 发送前检查本地token,存在则携带
+            if (accessToken) {
+                newConfig.headers.accessToken = accessToken;
+            }
+            return newConfig;
         });
-        instance(url)
+
+        // 获取数据后拦截
+        instance.interceptors.response.use(
+            (response): AxiosResponse => {
+                // 兼容IE9
+                const data = response.data ? response.data : response.request.responseText;
+
+                // 后端约定处理
+                // switch (data.code) {
+                //     case '':
+                //         break;
+                //     default:
+                // }
+                return data;
+            },
+            (error) => {
+                // 失败态处理
+                // if (error && error.response) {
+                //     switch (error.response.status) {
+                //     }
+                // }
+                return Promise.reject(error);
+            },
+        );
+        instance(options)
             .then((res) => {
                 resolve(res);
-                return false;
             })
             .catch((error) => {
                 reject(error);

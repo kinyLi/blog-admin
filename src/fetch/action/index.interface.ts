@@ -1,7 +1,7 @@
+import { AxiosRequestConfig } from 'axios';
+
 interface CallApi {
     types: string[];
-    path: string;
-    method: string;
+    options: AxiosRequestConfig;
 }
-
 export default CallApi;
