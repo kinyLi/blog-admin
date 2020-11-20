@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { baseURL, accessToken } from '../../config';
+import { baseURL, accessToken } from 'config';
 
-export default function $axios(options: AxiosRequestConfig) {
+function $axios(options: AxiosRequestConfig): Promise<unknown> {
     return new Promise((resolve, reject) => {
         const instance = axios.create({
             ...options,
@@ -50,3 +50,5 @@ export default function $axios(options: AxiosRequestConfig) {
             });
     });
 }
+
+export default $axios;

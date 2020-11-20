@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import CALL_API from '../fetch/action';
+import CALL_API from 'fetch/action';
 
 export const GET_INFO = 'GET_INFO';
 export const GET_INFO_SUCCESS = 'GET_INFO_SUCCESS';
