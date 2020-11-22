@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Layout } from 'antd';
 import HeaderNav from 'components/header-nav';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { MENU_LIST, LOGO, DEFAULT_SELECTED_KEYS } from './constant';
 import { info, life, article } from './modules';
 import './index.scss';
