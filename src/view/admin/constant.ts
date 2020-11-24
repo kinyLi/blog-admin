@@ -1,7 +1,7 @@
 const MENU_LIST = [
-    { navName: 'nav1', navKey: 1 },
-    { navName: 'nav2', navKey: 2 },
-    { navName: 'nav3', navKey: 3 },
+    { navName: 'nav1', navKey: 1, navLink: '/admin' },
+    { navName: 'nav2', navKey: 2, navLink: '/admin' },
+    { navName: 'nav3', navKey: 3, navLink: '/admin' },
 ];
 
 const LOGO = 'kiny';

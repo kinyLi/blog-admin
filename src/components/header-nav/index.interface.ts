@@ -1,6 +1,7 @@
 interface MenuItemInterface {
     navName: string;
     navKey: number;
+    navLink: string;
 }
 
 interface HeaderNavPropsInterface {

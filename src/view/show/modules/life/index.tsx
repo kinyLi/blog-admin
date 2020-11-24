@@ -1,5 +1,6 @@
 import React from 'react';
 import LifeShow from './components/life-show/index';
+import './index.scss';
 
 const life = (): JSX.Element => {
     return (
