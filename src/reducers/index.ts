@@ -1,8 +1,4 @@
-import { combineReducers } from 'redux';
 import getInfo from './info';
+import cacheImageList from './cache-image-list';
 
-const rootReducer = combineReducers({
-    getInfo,
-});
-
-export default rootReducer;
+export default { getInfo, cacheImageList };

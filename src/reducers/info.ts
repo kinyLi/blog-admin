@@ -1,4 +1,4 @@
-import { GET_INFO_SUCCESS } from '../actions/infos';
+import { GET_INFO_SUCCESS } from '../actions';
 
 interface IState {
     url: string;
