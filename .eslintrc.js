@@ -40,5 +40,6 @@ module.exports = {
         'import/no-absolute-path': 'off',
         'jsx-a11y/click-events-have-key-events': 'off',
         '@typescript-eslint/no-var-requires': 'off',
+        '@typescript-eslint/ban-ts-comment': 'off',
     },
 };
