@@ -44,8 +44,10 @@ const AdminContent = () => {
     // }, []);
 
     return (
-        <div id="prosemirror">
-            <QuillDom />
+        <div className="admin-content">
+            <div className="quill-wrapper">
+                <QuillDom />
+            </div>
         </div>
     );
 };
