@@ -7,6 +7,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 import rootReducer from './store';
+import 'lib-flexible';
 
 import App from './App';
 
