@@ -8,19 +8,19 @@ const HeaderNav = (props: HeaderNavPropsInterface) => {
     const { menuList = [], logo, defaultSelectedKeys = '1' } = props;
     return (
         <div className="view-header-nav">
-            <div className="logo">{logo}</div>
-            <Menu theme="light" mode="horizontal" defaultSelectedKeys={[defaultSelectedKeys]}>
+            <Menu
+                style={{ width: '100%', height: '100%', border: 'none' }}
+                mode="horizontal"
+                defaultSelectedKeys={[defaultSelectedKeys]}
+            >
                 {menuList.map((item) => {
                     return (
-                        <Menu.Item key={item.navKey}>
+                        <Menu.Item style={{ height: '100%', verticalAlign: 'top' }} key={item.navKey}>
                             <Link to={item.navLink}>{item.navName}</Link>
                         </Menu.Item>
                     );
                 })}
             </Menu>
-            <div className="view-header-user">
-                <Avatar>{logo}</Avatar>
-            </div>
         </div>
     );
 };

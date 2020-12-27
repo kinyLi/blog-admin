@@ -1,5 +1,5 @@
-import article from './article';
-import info from './info';
-import life from './life';
+import Article from './article';
+import Info from './info';
+import Life from './life';
 
-export { article, info, life };
+export { Article, Info, Life };

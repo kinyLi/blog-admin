@@ -1,0 +1,34 @@
+.show-view__article-list{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    .show-view__article-list-item{
+        width: 50%;
+        height: 200px;
+        padding: 5px;
+        box-sizing: border-box;
+        border: 1px solid #000;
+        border-radius: 5px;
+    }
+    .show-view__article-list-item-image{
+        height: 120px;
+    }
+    .show-view__article-list-item-info{
+        height: 80px;
+        width: 100%;
+        .show-view__article-list-item-title{
+            font-size: 14px;
+        }
+        .show-view__article-list-item-describe{
+            white-space: normal;
+            word-wrap: break-word;
+            word-break: normal;
+            white-space: normal;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+    }
+}

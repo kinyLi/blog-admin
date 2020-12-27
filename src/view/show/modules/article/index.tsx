@@ -1,7 +1,19 @@
 import React from 'react';
+import './index.scss';
+import { Row, Col } from 'antd';
+import ArticleList from './components/article-list/index';
 
-const article = () => {
-    return <div>article</div>;
+const Article = (): JSX.Element => {
+    return (
+        <div className="show-view__Article">
+            <Row>
+                <Col span={16}>article</Col>
+                <Col span={8}>
+                    <ArticleList />
+                </Col>
+            </Row>
+        </div>
+    );
 };
 
-export default article;
+export default Article;

@@ -5,7 +5,7 @@ import { GithubFilled, WechatFilled } from '@ant-design/icons';
 
 const { Title, Paragraph, Link } = Typography;
 
-const info = (): JSX.Element => {
+const Info = (): JSX.Element => {
     const showWechat = <div>wechat</div>;
 
     return (
@@ -28,4 +28,4 @@ const info = (): JSX.Element => {
     );
 };
 
-export default info;
+export default Info;
