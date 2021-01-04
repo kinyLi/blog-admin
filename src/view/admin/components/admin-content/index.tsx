@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './index.scss';
 import QuillDom from 'components/quill-dom';
+import MdEdit from 'components/md-edit';
 
 // import { useDispatch, useSelector } from 'react-redux';
 // import { message } from 'antd';
@@ -46,7 +47,8 @@ const AdminContent = () => {
     return (
         <div className="admin-content">
             <div className="quill-wrapper">
-                <QuillDom />
+                <MdEdit />
+                {/* <QuillDom /> */}
             </div>
         </div>
     );
