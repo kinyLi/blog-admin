@@ -28,8 +28,8 @@ const mdParser = new MarkdownIt({
 });
 
 const mdConfig = {
-    canView: {
-        hideMenu: true,
+    view: {
+        menu: false,
     },
     shortcuts: true,
     syncScrollMode: true,
