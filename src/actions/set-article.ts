@@ -17,7 +17,7 @@ export function setArticle(setData: SetArticleData): (dispatch: Dispatch) => Pro
         options: {
             method: 'post',
             url: '/article/set',
-            params: setData,
+            data: setData,
         },
     });
 }

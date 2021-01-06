@@ -6,6 +6,7 @@ import MarkdownIt from 'markdown-it';
 import { setArticle } from '../../actions/set-article';
 import 'react-markdown-editor-lite/lib/index.css';
 import 'highlight.js/styles/a11y-light.css';
+import './index.scss';
 
 const mdParser = new MarkdownIt({
     html: true,
@@ -26,6 +27,14 @@ const mdParser = new MarkdownIt({
     },
 });
 
+const mdConfig = {
+    canView: {
+        hideMenu: true,
+    },
+    shortcuts: true,
+    syncScrollMode: true,
+};
+
 interface Data {
     html: string;
     text: string;
@@ -39,29 +48,58 @@ interface SetArticleData {
 
 const MdEdit = () => {
     const [text, setText] = useState('');
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
     const handleEditorChange = (data: Data): void => {
         setText(data.text);
+    };
+    const handleInputTitle = (titleVal: string): void => {
+        setTitle(titleVal);
+    };
+    const handleInputDescription = (descriptionVal: string): void => {
+        setDescription(descriptionVal);
     };
     const dispatch = useDispatch();
     const handleSetArticle = (): void => {
         dispatch(
             setArticle({
-                title: '123',
-                content: 'ajsjjsss',
+                title,
+                content: text,
+                description,
             }),
         );
     };
     return (
-        <div>
+        <div className="edit-content">
+            <input
+                onChange={(e) => {
+                    handleInputTitle(e.target.value);
+                }}
+                value={title}
+                className="edit-title-input title"
+                type="text"
+                placeholder="请输入标题"
+            />
+            <input
+                onChange={(e) => {
+                    handleInputDescription(e.target.value);
+                }}
+                value={description}
+                className="edit-title-input description"
+                type="text"
+                placeholder="请输入描叙"
+            />
             <MdEditor
+                id="my-md-editor"
                 value={text}
-                style={{ height: '100%' }}
+                style={{ height: '100%', width: '100%' }}
                 renderHTML={(val) => mdParser.render(val)}
                 onChange={handleEditorChange}
+                config={mdConfig}
+                placeholder="请输入内容"
             />
-            {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-            <div className="set" onClick={handleSetArticle}>
-                set
+            <div className="edit-set-button" onClick={handleSetArticle}>
+                发布
             </div>
         </div>
     );
