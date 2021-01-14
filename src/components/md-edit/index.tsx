@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import { useDispatch } from 'react-redux';
 import MdEditor from 'react-markdown-editor-lite';
 import HighLight from 'highlight.js';
 import MarkdownIt from 'markdown-it';
+import { Button } from 'antd';
 import { setArticle } from '../../actions/set-article';
+
 import 'react-markdown-editor-lite/lib/index.css';
 import 'highlight.js/styles/a11y-light.css';
 import './index.scss';
@@ -35,39 +37,61 @@ const mdConfig = {
     syncScrollMode: true,
 };
 
+const mdInitState: MdState = {
+    title: '',
+    content: '',
+    description: '',
+};
+
 interface Data {
     html: string;
     text: string;
 }
 
-interface SetArticleData {
+interface MdState {
     title: string;
     content: string;
-    description: string;
+    description?: string;
+}
+
+interface MdAction {
+    type: string;
+    data: MdState;
 }
 
 const MdEdit = () => {
-    const [text, setText] = useState('');
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
+    const mdReducer = (state: MdState, action: MdAction) => {
+        switch (action.type) {
+            case 'set':
+                return { ...state, ...action.data };
+            default:
+                return { ...state };
+        }
+    };
+
+    const [formData, setFormData] = useReducer(mdReducer, mdInitState);
+
     const handleEditorChange = (data: Data): void => {
-        setText(data.text);
+        setFormData({
+            type: 'set',
+            data: { ...formData, content: data.text },
+        });
     };
     const handleInputTitle = (titleVal: string): void => {
-        setTitle(titleVal);
+        setFormData({
+            type: 'set',
+            data: { ...formData, title: titleVal },
+        });
     };
     const handleInputDescription = (descriptionVal: string): void => {
-        setDescription(descriptionVal);
+        setFormData({
+            type: 'set',
+            data: { ...formData, description: descriptionVal },
+        });
     };
     const dispatch = useDispatch();
     const handleSetArticle = (): void => {
-        dispatch(
-            setArticle({
-                title,
-                content: text,
-                description,
-            }),
-        );
+        dispatch(setArticle(formData));
     };
     return (
         <div className="edit-content">
@@ -75,7 +99,7 @@ const MdEdit = () => {
                 onChange={(e) => {
                     handleInputTitle(e.target.value);
                 }}
-                value={title}
+                value={formData.title}
                 className="edit-title-input title"
                 type="text"
                 placeholder="请输入标题"
@@ -84,14 +108,14 @@ const MdEdit = () => {
                 onChange={(e) => {
                     handleInputDescription(e.target.value);
                 }}
-                value={description}
+                value={formData.description}
                 className="edit-title-input description"
                 type="text"
                 placeholder="请输入描叙"
             />
             <MdEditor
                 id="my-md-editor"
-                value={text}
+                value={formData.content}
                 style={{ height: '100%', width: '100%' }}
                 renderHTML={(val) => mdParser.render(val)}
                 onChange={handleEditorChange}
