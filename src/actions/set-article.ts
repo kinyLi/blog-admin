@@ -9,6 +9,7 @@ interface SetArticleData {
     title: string;
     content: string;
     description?: string;
+    cover: string;
 }
 
 export function setArticle(setData: SetArticleData): (dispatch: Dispatch) => Promise<void> {

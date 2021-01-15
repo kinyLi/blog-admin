@@ -42,5 +42,7 @@ module.exports = {
         '@typescript-eslint/no-var-requires': 'off',
         '@typescript-eslint/ban-ts-comment': 'off',
         'jsx-a11y/no-static-element-interactions': 'off',
+        'react/require-default-props': 'off',
+        'no-unused-expressions': 'off',
     },
 };

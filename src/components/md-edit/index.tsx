@@ -1,9 +1,10 @@
-import React, { useState, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import { useDispatch } from 'react-redux';
 import MdEditor from 'react-markdown-editor-lite';
 import HighLight from 'highlight.js';
 import MarkdownIt from 'markdown-it';
-import { Button } from 'antd';
+import { Button, Input } from 'antd';
+import Upload from '../upload/index';
 import { setArticle } from '../../actions/set-article';
 
 import 'react-markdown-editor-lite/lib/index.css';
@@ -41,6 +42,8 @@ const mdInitState: MdState = {
     title: '',
     content: '',
     description: '',
+    text: '',
+    cover: '',
 };
 
 interface Data {
@@ -52,6 +55,8 @@ interface MdState {
     title: string;
     content: string;
     description?: string;
+    text: string;
+    cover: string;
 }
 
 interface MdAction {
@@ -74,56 +79,75 @@ const MdEdit = () => {
     const handleEditorChange = (data: Data): void => {
         setFormData({
             type: 'set',
-            data: { ...formData, content: data.text },
+            data: { ...formData, text: data.text, content: data.html },
         });
     };
-    const handleInputTitle = (titleVal: string): void => {
+    const handleInputTitle = (title: string): void => {
         setFormData({
             type: 'set',
-            data: { ...formData, title: titleVal },
+            data: { ...formData, title },
         });
     };
-    const handleInputDescription = (descriptionVal: string): void => {
+    const handleInputDescription = (description: string): void => {
         setFormData({
             type: 'set',
-            data: { ...formData, description: descriptionVal },
+            data: { ...formData, description },
         });
     };
     const dispatch = useDispatch();
     const handleSetArticle = (): void => {
-        dispatch(setArticle(formData));
+        dispatch(
+            setArticle({
+                title: formData.title,
+                content: formData.content,
+                description: formData.description,
+                cover: formData.cover,
+            }),
+        );
     };
+    const setIsOk = formData.content !== '' && formData.title !== '' && formData.cover !== '';
+
+    const uploadCover = (coverSrc: string) => {
+        setFormData({
+            type: 'set',
+            data: { ...formData, cover: coverSrc },
+        });
+    };
+
     return (
         <div className="edit-content">
-            <input
-                onChange={(e) => {
-                    handleInputTitle(e.target.value);
-                }}
-                value={formData.title}
-                className="edit-title-input title"
-                type="text"
-                placeholder="请输入标题"
-            />
-            <input
-                onChange={(e) => {
-                    handleInputDescription(e.target.value);
+            <Upload uploadCallBack={uploadCover} />
+            <div className="edit-content-tags">
+                <Input
+                    placeholder="请输入标题"
+                    onChange={(event) => {
+                        handleInputTitle(event.target.value);
+                    }}
+                    value={formData.title}
+                    bordered={false}
+                />
+            </div>
+            <Input
+                placeholder="请输入描叙"
+                onChange={(event) => {
+                    handleInputDescription(event.target.value);
                 }}
                 value={formData.description}
-                className="edit-title-input description"
-                type="text"
-                placeholder="请输入描叙"
+                bordered={false}
             />
             <MdEditor
                 id="my-md-editor"
-                value={formData.content}
+                value={formData.text}
                 style={{ height: '100%', width: '100%' }}
                 renderHTML={(val) => mdParser.render(val)}
                 onChange={handleEditorChange}
                 config={mdConfig}
                 placeholder="请输入内容"
             />
-            <div className="edit-set-button" onClick={handleSetArticle}>
-                发布
+            <div className="set-button">
+                <Button disabled={!setIsOk} onClick={handleSetArticle} size="small" type="primary">
+                    发布
+                </Button>
             </div>
         </div>
     );

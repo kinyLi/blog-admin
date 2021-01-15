@@ -1,7 +1,7 @@
 const MENU_LIST = [
-    { navName: '个人信息', navKey: 1, navLink: '/show/info' },
-    { navName: '技术博客', navKey: 2, navLink: '/show/article' },
-    { navName: '生活圈', navKey: 3, navLink: '/show/life' },
+    { navName: '1tbs', navKey: 1, navLink: '/show/info' },
+    { navName: '2tbs', navKey: 2, navLink: '/show/article' },
+    { navName: '3tbs', navKey: 3, navLink: '/show/life' },
 ];
 
 const LOGO = 'kiny';
