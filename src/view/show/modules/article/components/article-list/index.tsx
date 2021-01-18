@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './index.scss';
 import { Card, Row, Col, Image } from 'antd';
+import { getArticle } from 'actions';
+import { useDispatch } from 'react-redux';
 
 const ArticleList = (): JSX.Element => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getArticle({ limit: 10, page: 1 }));
+    }, []);
+
     return (
         <div className="show-view__article-list">
             <div className="show-view__article-list-item">
